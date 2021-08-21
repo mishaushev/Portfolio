@@ -1,7 +1,7 @@
 #My Portfolio in Current Development
 
     1. Load Images
-    2. Create COmponents:
+    2. Create Components:
         - Header
         - Footer
         - About
