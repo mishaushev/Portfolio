@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import firebase from "./firebase";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const [Portfolio, setPortfolio] = useState([]);
+const [loading, setLoading] = useState(false);
+
+const ref = firebase.firestore().collection("Portfolio");
+
+function getPortfolio() {
+  setLoading(true);
+  ref.onSnapshot((querySnapshot) => {
+    const items = [];
+    querySnapshot.forEach((doc) => {
+      items.push(doc.data());
+    });
+    setPortfolio(items);
+    setLoading(false);
+  });
+}
+
+useEffect(() => {
+  getPortfolio();
+}, []);
+
+
+if (loading) {
+  return <h1>Loading...</h1>;
+}
+
+return (
+    <div>
+        <h1>Portfolio</h1>
+        {Portfolio.map((project) => (
+          <div key={project.id}>
+            <h2>{project.title}</h2>
+            <p>{project.desc}</p>
+          </div>  
+        ))}
     </div>
   );
 }
