@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
+import Header from "./Components/Header.js";
 
 function App() {
 const [Portfolio, setPortfolio] = useState([]);
@@ -23,13 +24,13 @@ useEffect(() => {
   getPortfolio();
 }, []);
 
-
 if (loading) {
   return <h1>Loading...</h1>;
 }
 
 return (
     <div>
+      <Header />
         <h1>Portfolio</h1>
         {Portfolio.map((project) => (
           <div key={project.id}>
