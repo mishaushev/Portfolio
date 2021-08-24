@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import firebase from "./firebase";
+import { Container, Row, Col } from "reactstrap";
+
 
 function App() {
   const [Portfolio, setPortfolio] = useState([]);
@@ -29,18 +31,25 @@ function App() {
     return <h1>Loading...</h1>;
   }
   
+
+  //Return the frontend
   return (
-      <div>
-        <Header />
-          <h1>Portfolio</h1>
-          {Portfolio.map((project) => (
-            <div key={project.id}>
-              <h2>{project.title}</h2>
-              <p>{project.desc}</p>
-            </div>  
-          ))}
-        <Footer />
-      </div>
+    <div>
+      <Header />
+      <h1>Portfolio</h1>
+      
+        <Row>
+          <Col xs="6">Column 1</Col>
+          <Col xs="6">Column 2</Col>
+        </Row>
+        {Portfolio.map((project) => (
+          <div key={project.id}>
+            <h2>{project.title}</h2>
+            <p>{project.desc}</p>
+          </div>  
+        ))}
+      <Footer />
+    </div>
     );
 }
 
