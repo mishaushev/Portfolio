@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
 import Header from "./Components/Header.js";
+import Footer from "./Components/Footer";
 
 function App() {
 const [Portfolio, setPortfolio] = useState([]);
@@ -38,6 +39,7 @@ return (
             <p>{project.desc}</p>
           </div>  
         ))}
+      <Footer />
     </div>
   );
 }
