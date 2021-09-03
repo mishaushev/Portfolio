@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from "react";
-import firebase from "./firebase";
-import HomePage from "./Pages/HomePage";
+import React from "react";
+import Header from "../Components/Header";
 
+const HomePage = () => {
+    return(
+        <div>
+            <Header/>
+        </div>
+    )
 
+}
+
+export default HomePage;

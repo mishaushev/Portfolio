@@ -9,3 +9,13 @@
     background-color: rgb(192, 45, 26);
     color: #fff;
   }
+
+  nav{
+    height:50em;
+    border: 1em solid #ffffff
+  }
+
+  .div-header {
+    width: 80%;
+    margin: 0 auto;
+  }
