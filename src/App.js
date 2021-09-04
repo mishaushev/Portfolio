@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import HomePage from "./Pages/HomePage";
+import About from "./Pages/About";
 import firebase from "./firebase";
 import { Container, Row, Col } from "reactstrap";
+import { Route } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 
 
 function App() {
@@ -34,7 +38,15 @@ function App() {
 
   //Return the frontend
   return (
+  <BrowserRouter>  
     <div>
+    <Route path="/about">
+        <About />
+    </Route>
+    <Route path="/HomePage">
+        <HomePage />
+    </Route>
+
       <Header />
       <h1>Portfolio</h1>
       
@@ -50,6 +62,7 @@ function App() {
         ))}
       <Footer />
     </div>
+  </BrowserRouter>
     );
 }
 
