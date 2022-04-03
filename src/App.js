@@ -5,8 +5,8 @@ import HomePage from "./Pages/HomePage";
 import About from "./Pages/About";
 import firebase from "./firebase";
 import { Container, Row, Col } from "reactstrap";
-import { Route } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Project1 from "./Pages/Projects/1_Project";
 
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
 
   //Return the frontend
   return (
-  <BrowserRouter>  
+  <Router>  
     <div>
     <Route path="/about">
         <About />
@@ -51,8 +51,32 @@ function App() {
       <h1>Portfolio</h1>
       
         <Row>
-          <Col xs="6">Column 1</Col>
-          <Col xs="6">Column 2</Col>
+          <Col xs="6"> 
+            <Switch>
+              <Route path="/Project1"> 
+                
+              </Route>
+            </Switch> Column 1, Row 1
+          </Col>
+
+          <Col xs="6">Column 2, Row 1</Col>
+        </Row>
+
+        <Row>
+          <Col xs="6">Column 1, Row 2</Col>
+          <Col xs="6">Column 2, Row 2</Col>
+        </Row>
+        <Row>
+          <Col xs="6">Column 1, Row 3</Col>
+          <Col xs="6">Column 2, Row 3</Col>
+        </Row>
+        <Row>
+          <Col xs="6">Column 1, Row 4</Col>
+          <Col xs="6">Column 2, Row 4</Col>
+        </Row>
+        <Row>
+          <Col xs="6">Column 1, Row 5</Col>
+          <Col xs="6">Column 2, Row 5</Col>
         </Row>
         {Portfolio.map((project) => (
           <div key={project.id}>
@@ -62,7 +86,7 @@ function App() {
         ))}
       <Footer />
     </div>
-  </BrowserRouter>
+  </Router>
     );
 }
 

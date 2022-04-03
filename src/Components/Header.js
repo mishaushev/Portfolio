@@ -37,20 +37,12 @@ const Header = () => {
             >
               About
             </NavLink>
-
-            <NavLink
-              className="navbar-item"
-              activeClassName="is-active"
-              to="/profile"
-            >
-              Profile
-            </NavLink>
+            
           </div>
 
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-white">Log in</a>
               </div>
             </div>
           </div>
@@ -61,3 +53,10 @@ const Header = () => {
 };
 
 export default Header;
+
+//<Route path="/about">
+//  <About />
+//</Route>
+//<Route path="/HomePage">
+//  <HomePage />
+//</Route>

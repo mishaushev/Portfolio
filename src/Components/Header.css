@@ -8,14 +8,13 @@
     margin-bottom: 2em;
     background-color: rgb(192, 45, 26);
     color: #fff;
-  }
+        position:absolute;
+        bottom:0;
+        width:100%;
+        height: 12%;
+}
 
-  nav{
+ nav{
     height:50em;
-    border: 1em solid #ffffff
-  }
-
-  .div-header {
-    width: 80%;
-    margin: 0 auto;
+    border: 100px solid #ffffff
   }
