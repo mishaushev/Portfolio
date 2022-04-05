@@ -1,93 +1,56 @@
-import React, { useState, useEffect } from "react";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
-import HomePage from "./Pages/HomePage";
-import About from "./Pages/About";
-import firebase from "./firebase";
-import { Container, Row, Col } from "reactstrap";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Project1 from "./Pages/Projects/1_Project";
-
+import React from "react";
+import { Link } from "react-router-dom";
+import ROUTES, { RenderRoutes } from "./Routes/routes";
 
 function App() {
-  const [Portfolio, setPortfolio] = useState([]);
-  const [loading, setLoading] = useState(false);
-  
-  const ref = firebase.firestore().collection("Portfolio");
-  
-  function getPortfolio() {
-    setLoading(true);
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-      });
-      setPortfolio(items);
-      setLoading(false);
-    });
-  }
-  
-  useEffect(() => {
-    getPortfolio();
-  }, []);
-  
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-  
-
-  //Return the frontend
   return (
-  <Router>  
-    <div>
-    <Route path="/about">
-        <About />
-    </Route>
-    <Route path="/HomePage">
-        <HomePage />
-    </Route>
-
-      <Header />
-      <h1>Portfolio</h1>
-      
-        <Row>
-          <Col xs="6"> 
-            <Switch>
-              <Route path="/Project1"> 
-                
-              </Route>
-            </Switch> Column 1, Row 1
-          </Col>
-
-          <Col xs="6">Column 2, Row 1</Col>
-        </Row>
-
-        <Row>
-          <Col xs="6">Column 1, Row 2</Col>
-          <Col xs="6">Column 2, Row 2</Col>
-        </Row>
-        <Row>
-          <Col xs="6">Column 1, Row 3</Col>
-          <Col xs="6">Column 2, Row 3</Col>
-        </Row>
-        <Row>
-          <Col xs="6">Column 1, Row 4</Col>
-          <Col xs="6">Column 2, Row 4</Col>
-        </Row>
-        <Row>
-          <Col xs="6">Column 1, Row 5</Col>
-          <Col xs="6">Column 2, Row 5</Col>
-        </Row>
-        {Portfolio.map((project) => (
-          <div key={project.id}>
-            <h2>{project.title}</h2>
-            <p>{project.desc}</p>
-          </div>  
-        ))}
-      <Footer />
+    <div style={{ display: "flex", height: "100vh", alignItems: "stretch" }}>
+      <div style={{ flex: 0.3, backgroundColor: "#f2f2f2" }}>
+        {displayRouteMenu(ROUTES)}
+      </div>
+      <div>
+        <RenderRoutes routes={ROUTES} />
+      </div>
     </div>
-  </Router>
-    );
+  );
 }
 
 export default App;
+
+/**
+ * Render a nested hierarchy of route configs with unknown depth/breadth
+ */
+function displayRouteMenu(routes) {
+  /**
+   * Render a single route as a list item link to the config's pathname
+   */
+  function singleRoute(route) {
+    return (
+      <li key={route.key}>
+        <Link to={route.path}>
+          {route.key} ({route.path})
+        </Link>
+      </li>
+    );
+  }
+
+  // loop through the array of routes and generate an unordered list
+  return (
+    <ul>
+      {routes.map(route => {
+        // if this route has sub-routes, then show the ROOT as a list item and recursively render a nested list of route links
+        if (route.routes) {
+          return (
+            <React.Fragment key={route.key}>
+              {singleRoute(route)}
+              {displayRouteMenu(route.routes)}
+            </React.Fragment>
+          );
+        }
+
+        // no nested routes, so just render a single route
+        return singleRoute(route);
+      })}
+    </ul>
+  );
+}
