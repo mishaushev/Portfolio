@@ -1,11 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { Col, Row,  } from "reactstrap";
-const ImageUrl = "gs://portfolio-546b9.appspot.com/Project (Cotton Candy)/1Firegirl.gif"
+//import React, { useEffect, useState } from "react";
+//import { Col, Row,  } from "reactstrap";
+import React from "react"
+import { Canvas } from "react-three-fiber";
+import { OrbitControls } from "drei";
+//import "../index.css"
+//const ImageUrl = "gs://portfolio-546b9.appspot.com/Project (Cotton Candy)/1Firegirl.gif"
 
 
 //Project "Cotton Candy" 2021
-function Project1() {      
-        const [img, setImg] = useState();
+function Box() {
+    return(
+        <mesh>
+            <BufferGeometry attach="geometry" />
+            <meshLambertMaterial attach="material" color="hotpink" />
+        </mesh>
+    );
+}
+export default function Project1() {
+    return (
+        <Canvas>
+            <OrbitControls />
+            <ambientLight intensity={0.5} />
+            <Box />
+        </Canvas>
+    )
+}
+
+/*    const [url, setUrl] = useState();
+
+    useEffect(() => {
+        const func = async () => {
+            const storage = getStorage();
+            const reference = ref(storage, '/1Firegirl.jpg')
+            await getDownloadURL(reference).then((x) => {
+                setUrl(x);
+            }) 
+        }
+    })
+*/
+
+    /*    const [img, setImg] = useState();
       
         const fetchImage = async () => {
           const res = await fetch(ImageUrl);
@@ -34,21 +68,4 @@ function Project1() {
                     <Col> 1 of 2</Col>
                 </Row>
             </div>
-        );
-    }
-
-export default Project1;
-
-
-/*    const [url, setUrl] = useState();
-
-    useEffect(() => {
-        const func = async () => {
-            const storage = getStorage();
-            const reference = ref(storage, '/1Firegirl.jpg')
-            await getDownloadURL(reference).then((x) => {
-                setUrl(x);
-            }) 
-        }
-    })
-*/
+        );*/
