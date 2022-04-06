@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ROUTES, { RenderRoutes } from "./Routes/routes";
 
 function App() {
+
+
   return (
     <div style={{ display: "flex", height: "100vh", alignItems: "stretch" }}>
       <div style={{ flex: 0.3, backgroundColor: "#f2f2f2" }}>
