@@ -1,4 +1,4 @@
-#My Portfolio in Current Development
+#My Portfolio in Current Development (2D Version with no WEBGL)
 
     1. Load Images
     2. Create Components:
